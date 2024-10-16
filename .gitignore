@@ -1,3 +1,5 @@
 venv/
 
 Test_data.xlsx
+
+config.py

@@ -1,16 +1,17 @@
-import numpy as np
 import pandas as pd
 
 from load_data import load_data, transform_data
 from statistic_calcs import descriptive_stats
 from visualization import create_bar_chart
 
+import config
+
 # force pandas to show all columns
 pd.set_option('display.max_columns', None)
 
+file_path = config.file_path
+sheet = config.sheet
 
-file_path = "Test_data.xlsx"
-sheet = "Data charting, 25 sep TEST"
 
 document_chars = ["Language", "Publication year", "Publishing institution", "Document type"]
 principles = ["Human autonomy", "Patient privacy", "Fairness", "Prevention of harm", "Explicability"]
