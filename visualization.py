@@ -11,8 +11,11 @@ def create_bar_chart(df: pd.DataFrame, variable: str):
         print("You wrote the wrong variable name!")
         return
     print(df)
-    plt.figure(figsize=(15, 6))
-    plt.bar(x = df["RQ1 variable"], height = df["Count of appearances"])
+    plt.figure(figsize=(12, 6))
+    # stem first has locs then heads as inputs
+    markerline, stemlines, baseline = plt.stem(df["RQ1 variable"], df["Count of appearances"], linefmt="grey", markerfmt="D")
+    markerline.set_markerfacecolor('none')
+    
     plt.xticks(rotation=0, wrap=True)
 
     # add title and labels
