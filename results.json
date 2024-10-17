@@ -1,0 +1,15 @@
+[
+    {
+        "Datetime": "2024-10-17 15:52:26.882736"
+    },
+    {
+        "Variable": "pipeline",
+        "Chi-square statistic": 17.80952380952381,
+        "P-value": 0.0004814800607489958
+    },
+    {
+        "Variable": "principles",
+        "Chi-square statistic": 8.90909090909091,
+        "P-value": 0.06341238021184632
+    }
+]

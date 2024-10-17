@@ -1,8 +1,9 @@
 import pandas as pd
 
-from load_data import load_data, transform_data
-from statistic_calcs import descriptive_stats
+from load_data import load_data, transform_data, save_data
+from statistic_calcs import descriptive_stats, chi_square
 from visualization import create_bar_chart
+from datetime import datetime
 
 import config
 
@@ -22,8 +23,15 @@ pipeline = ["Conception", "Development", "Calibration", "Implementation, Evaluat
 dataframe = load_data(file_path, sheet)
 
 dataframe = transform_data(dataframe, principles, pipeline)
-#print(dataframe)
 
 doc_dataframe, ethics_dataframe = descriptive_stats(dataframe, [document_chars, principles, pipeline])
+print(ethics_dataframe)
 
-create_bar_chart(ethics_dataframe, "principles")
+result_list = [
+    chi_square(ethics_dataframe, "pipeline"),
+    chi_square(ethics_dataframe, "principles")
+]
+
+save_data(str(datetime.today()), result_list)
+
+create_bar_chart(ethics_dataframe, "pipeline")
