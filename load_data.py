@@ -1,5 +1,7 @@
 import numpy as np
 import pandas as pd
+import json
+from datetime import datetime
 
 def load_data(path: str, sheet: str) -> pd.DataFrame:
     # read xlsx file and drop first column and columns after RQ1
@@ -32,3 +34,11 @@ def transform_data(df: pd.DataFrame, principles: [], pipeline: []) -> pd.DataFra
             df[new_name] = np.where(df[item] == 0, 0, 1)
 
     return df
+
+def save_data(dt: datetime, dict_list: []):
+    # create datetime dict and insert at beginning of dict_list
+    dt_dict = {"Datetime": dt}
+    dict_list.insert(0, dt_dict)
+
+    with open("results.json", "w") as fp:
+        json.dump(dict_list, fp, indent=4)
