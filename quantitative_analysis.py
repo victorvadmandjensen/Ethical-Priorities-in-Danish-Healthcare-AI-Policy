@@ -22,16 +22,17 @@ pipeline = ["Conception", "Development", "Calibration", "Implementation, Evaluat
 
 dataframe = load_data(file_path, sheet)
 
-dataframe = transform_data(dataframe, principles, pipeline)
+dataframe = transform_data(dataframe, principles, pipeline, document_chars)
 
-doc_dataframe, ethics_dataframe = descriptive_stats(dataframe, [document_chars, principles, pipeline])
-print(ethics_dataframe)
+ethics_df, doc_df = descriptive_stats(dataframe, [document_chars, principles, pipeline])
 
 result_list = [
-    chi_square(ethics_dataframe, "pipeline"),
-    chi_square(ethics_dataframe, "principles")
+    chi_square(ethics_df, "pipeline"),
+    chi_square(ethics_df, "principles"),
+    # use records for a more human-readable output
+    doc_df.to_dict(orient="records")
 ]
 
 save_data(str(datetime.today()), result_list)
 
-create_bar_chart(ethics_dataframe, "pipeline")
+create_bar_chart(ethics_df, "pipeline")
