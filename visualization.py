@@ -2,8 +2,9 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib import colormaps
 import seaborn as sns
+from matplotlib.ticker import MaxNLocator
 
-def create_bar_chart(df: pd.DataFrame, variable: str):
+def create_bar_chart(df: pd.DataFrame, variable: str, color: str):
     if variable == "principles":
         df = df.iloc[0:5]
     elif variable == "pipeline":
@@ -20,7 +21,7 @@ def create_bar_chart(df: pd.DataFrame, variable: str):
     # one use of matplotlib colors and another with seaborn
     #colors = plt.get_cmap("tab10").colors
     #colors = sns.color_palette("dark", desat=0.6, as_cmap=True)
-    colors = "#EE7F00"
+    colors = color
 
     fig, ax = plt.subplots()
 
@@ -44,6 +45,7 @@ def create_bar_chart(df: pd.DataFrame, variable: str):
     ax.set_axisbelow(True)
     ax.yaxis.grid(True, color='#EEEEEE')
     ax.xaxis.grid(False)
+    ax.yaxis.set_major_locator(MaxNLocator(integer=True))
 
     for bar in bars:
         ax.text(

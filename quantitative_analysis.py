@@ -35,4 +35,8 @@ result_list = [
 
 save_data(str(datetime.today()), result_list)
 
-create_bar_chart(ethics_df, "pipeline")
+color1 = "#005f2f"
+color2 = "#00005f"
+
+create_bar_chart(ethics_df, "pipeline", color2)
+create_bar_chart(ethics_df, "principles", color1)
