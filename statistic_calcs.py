@@ -17,10 +17,17 @@ def descriptive_stats(df: pd.DataFrame, columns = []) -> pd.DataFrame:
             ethics_df[column] = df[column].sum()
         elif pd.api.types.is_object_dtype(df[column]):
             doc_df[column] = df[column].value_counts()
+    # create dataframe for ethics and for each of the categorical variables to concat these
     ethics_df = pd.DataFrame(ethics_df.items(), columns=["RQ1 variable", "Count of appearances"])
-    doc_df = pd.DataFrame(doc_df.items(), columns=["Document characteristic", "count of appearances"])
+    lang_df = pd.DataFrame(doc_df["Language"].items(), columns=["Document characteristic", "count of appearances"])
+    year_df = pd.DataFrame(doc_df["Publication year"].items(), columns=["Document characteristic", "count of appearances"])
+    inst_df = pd.DataFrame(doc_df["Publishing institution"].items(), columns=["Document characteristic", "count of appearances"])
+    type_df = pd.DataFrame(doc_df["Document type"].items(), columns=["Document characteristic", "count of appearances"])
 
-    return doc_df, ethics_df
+    doc_df = pd.concat([lang_df, year_df, inst_df, type_df], axis=0)
+    #print(doc_df)
+
+    return ethics_df, doc_df
 
 def chi_square(df: pd.DataFrame, variable: str) -> {}:
     # remember the second index is NOT inclusive, unlike .loc

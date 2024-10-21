@@ -1,6 +1,6 @@
 [
     {
-        "Datetime": "2024-10-17 15:52:26.882736"
+        "Datetime": "2024-10-21 10:11:37.407564"
     },
     {
         "Variable": "pipeline",
@@ -11,5 +11,91 @@
         "Variable": "principles",
         "Chi-square statistic": 8.90909090909091,
         "P-value": 0.06341238021184632
-    }
+    },
+    [
+        {
+            "Document characteristic": "DA",
+            "count of appearances": 25
+        },
+        {
+            "Document characteristic": 2023.0,
+            "count of appearances": 10
+        },
+        {
+            "Document characteristic": 2022.0,
+            "count of appearances": 5
+        },
+        {
+            "Document characteristic": 2021.0,
+            "count of appearances": 4
+        },
+        {
+            "Document characteristic": 2018.0,
+            "count of appearances": 2
+        },
+        {
+            "Document characteristic": 2020.0,
+            "count of appearances": 2
+        },
+        {
+            "Document characteristic": 2017.0,
+            "count of appearances": 1
+        },
+        {
+            "Document characteristic": 2024.0,
+            "count of appearances": 1
+        },
+        {
+            "Document characteristic": "Danish Medicines Agency",
+            "count of appearances": 4
+        },
+        {
+            "Document characteristic": "Ministry of the Interior and Health",
+            "count of appearances": 4
+        },
+        {
+            "Document characteristic": "The Danish Council on Ethics",
+            "count of appearances": 4
+        },
+        {
+            "Document characteristic": "Danish Health Data Authority",
+            "count of appearances": 3
+        },
+        {
+            "Document characteristic": "Danish Patient Safety Authority",
+            "count of appearances": 3
+        },
+        {
+            "Document characteristic": "The Data Ethics Council ",
+            "count of appearances": 3
+        },
+        {
+            "Document characteristic": "Agency for Digital Government",
+            "count of appearances": 2
+        },
+        {
+            "Document characteristic": "Danish Health Authority",
+            "count of appearances": 1
+        },
+        {
+            "Document characteristic": "Danish Patients",
+            "count of appearances": 1
+        },
+        {
+            "Document characteristic": "Official documents",
+            "count of appearances": 12
+        },
+        {
+            "Document characteristic": "Implementation documents",
+            "count of appearances": 6
+        },
+        {
+            "Document characteristic": "Working documents",
+            "count of appearances": 4
+        },
+        {
+            "Document characteristic": "Media and communications",
+            "count of appearances": 3
+        }
+    ]
 ]

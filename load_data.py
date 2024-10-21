@@ -13,7 +13,7 @@ def load_data(path: str, sheet: str) -> pd.DataFrame:
 
     return file
 
-def transform_data(df: pd.DataFrame, principles: [], pipeline: []) -> pd.DataFrame:
+def transform_data(df: pd.DataFrame, principles: [], pipeline: [], document_chars: []) -> pd.DataFrame:
     # rename pipeline columns with zipped dict from lists
     original_pipeline_cols = ["Conception (Auditability, Transparency Standards, and Conflicts of Interest)",
                                          "Development (Perpetuation of Bias within Training Data, Risk of Harm due to Group Membership, and Obtaining Training Data)",
