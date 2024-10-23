@@ -1,16 +1,16 @@
 [
     {
-        "Datetime": "2024-10-21 11:08:34.145139"
+        "Datetime": "2024-10-23 07:58:55.311087"
     },
     {
         "Variable": "pipeline",
-        "Chi-square statistic": 17.80952380952381,
-        "P-value": 0.0004814800607489958
+        "Chi-square statistic": 23.48780487804878,
+        "P-value": 3.195078117021975e-05
     },
     {
         "Variable": "principles",
-        "Chi-square statistic": 8.90909090909091,
-        "P-value": 0.06341238021184632
+        "Chi-square statistic": 9.40983606557377,
+        "P-value": 0.05163325087711902
     },
     [
         {
