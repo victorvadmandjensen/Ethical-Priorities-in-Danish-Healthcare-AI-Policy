@@ -62,8 +62,69 @@ def create_bar_chart(df: pd.DataFrame, variable: str, color: str):
     ax.set_ylabel("Count", labelpad=15)
     ax.set_xticklabels(wrapped_labels)
 
-
     plt.tight_layout()
     #plt.show()
     filename = "bar_chart_" + variable + ".pdf"
+    plt.savefig(filename)
+
+# function that takes a dictionary to visualize counts from this
+def create_descriptive_charts(df: pd.DataFrame):
+    
+    plt.rcParams["figure.figsize"]=(30, 12)
+    plt.rcParams["font.family"] = "sans-serif"
+    plt.rcParams["font.sans-serif"] = ["Lato"]
+    plt.rcParams["font.size"] = 16
+
+    # one use of matplotlib colors and another with seaborn
+    colors = [plt.get_cmap("Accent").colors,
+              plt.get_cmap("Set2").colors,
+              plt.get_cmap("Set3").colors,
+              plt.get_cmap("tab10").colors
+            ]
+    #colors = sns.color_palette("dark", desat=0.6, as_cmap=True)
+
+    df = df
+    cols = ["Language", "Publication year", "Publishing institution", "Document type"]
+    year_ticks = range(2016, 2025)
+
+    fig, axes = plt.subplots(2, 2, sharex=False, sharey=True)
+
+    fig.suptitle("Document characteristics", fontsize=20)
+
+    col = 0
+    for i in range(0, 2):
+        for j in range(0, 2):
+            bars = axes[i][j].bar(x=df[cols[col]].value_counts().index, height=df[cols[col]].value_counts()[0:], color=colors[col])
+            axes[i][j].set_title(cols[col])
+            axes[i][j].set_ylabel("Count", labelpad=15)
+            axes[i][j].spines['top'].set_visible(False)
+            axes[i][j].spines['right'].set_visible(False)
+            axes[i][j].spines['left'].set_visible(False)
+            axes[i][j].spines['bottom'].set_color('#DDDDDD')
+            axes[i][j].tick_params(axis="x", bottom=False, left=False)
+            axes[i][j].set_axisbelow(True)
+            axes[i][j].yaxis.grid(True, color='#EEEEEE')
+            axes[i][j].xaxis.grid(False)
+            # if col is 1 then we are on the year column and we need to manually set ticks here
+            if col == 1:
+                axes[i][j].set_xticks(year_ticks)
+            elif col == 2 or col == 3:
+                # get labels and linebreak them
+                wrapped_labels = [label.get_text().replace(' ', '\n') for label in axes[i][j].get_xticklabels()]
+                axes[i][j].set_xticklabels(wrapped_labels)
+            for bar in bars:
+                axes[i][j].text(
+                    bar.get_x() + bar.get_width() / 2,
+                    bar.get_height() + 0.3, 
+                    round(bar.get_height(), 1),
+                    horizontalalignment="center",
+                    color=bar.get_facecolor(),
+                    weight="bold",
+                )
+                
+            col += 1
+
+    plt.tight_layout()
+    #plt.show()
+    filename = "descriptive_chart.pdf"
     plt.savefig(filename)

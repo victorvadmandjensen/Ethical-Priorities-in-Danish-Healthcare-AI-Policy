@@ -2,7 +2,7 @@ import pandas as pd
 
 from load_data import load_data, transform_data, save_data
 from statistic_calcs import descriptive_stats, chi_square
-from visualization import create_bar_chart
+from visualization import create_bar_chart, create_descriptive_charts
 from datetime import datetime
 
 import config
@@ -26,11 +26,15 @@ dataframe = transform_data(dataframe, principles, pipeline, document_chars)
 
 ethics_df, doc_df = descriptive_stats(dataframe, [document_chars, principles, pipeline])
 
+# use records for a more human-readable output
+doc_df = doc_df.to_dict(orient="records")
+#print(type(doc_df[0]))
+#print(doc_df)
+
 result_list = [
     chi_square(ethics_df, "pipeline"),
     chi_square(ethics_df, "principles"),
-    # use records for a more human-readable output
-    doc_df.to_dict(orient="records")
+    doc_df
 ]
 
 save_data(str(datetime.today()), result_list)
@@ -40,3 +44,5 @@ color2 = "#00005f"
 
 create_bar_chart(ethics_df, "pipeline", color2)
 create_bar_chart(ethics_df, "principles", color1)
+
+create_descriptive_charts(dataframe)

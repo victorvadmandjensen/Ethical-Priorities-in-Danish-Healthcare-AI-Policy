@@ -1,56 +1,72 @@
 [
     {
-        "Datetime": "2024-10-23 09:55:54.482359"
+        "Datetime": "2024-11-06 14:54:35.342327"
     },
     {
         "Variable": "pipeline",
-        "Chi-square statistic": 23.48780487804878,
-        "P-value": 3.195078117021975e-05
+        "Chi-square statistic": 70.39759036144578,
+        "P-value": 3.5084818379859034e-15
     },
     {
         "Variable": "principles",
-        "Chi-square statistic": 9.40983606557377,
-        "P-value": 0.05163325087711902
+        "Chi-square statistic": 60.90384615384615,
+        "P-value": 1.873031361663172e-12
     },
     [
         {
             "Document characteristic": "DA",
-            "count of appearances": 25
+            "count of appearances": 55
+        },
+        {
+            "Document characteristic": "EN",
+            "count of appearances": 4
         },
         {
             "Document characteristic": 2023.0,
-            "count of appearances": 10
+            "count of appearances": 21
         },
         {
             "Document characteristic": 2022.0,
-            "count of appearances": 5
+            "count of appearances": 9
         },
         {
             "Document characteristic": 2021.0,
-            "count of appearances": 4
-        },
-        {
-            "Document characteristic": 2018.0,
-            "count of appearances": 2
-        },
-        {
-            "Document characteristic": 2020.0,
-            "count of appearances": 2
-        },
-        {
-            "Document characteristic": 2017.0,
-            "count of appearances": 1
+            "count of appearances": 8
         },
         {
             "Document characteristic": 2024.0,
+            "count of appearances": 8
+        },
+        {
+            "Document characteristic": 2018.0,
+            "count of appearances": 5
+        },
+        {
+            "Document characteristic": 2020.0,
+            "count of appearances": 3
+        },
+        {
+            "Document characteristic": 2017.0,
+            "count of appearances": 2
+        },
+        {
+            "Document characteristic": 2019.0,
+            "count of appearances": 2
+        },
+        {
+            "Document characteristic": 2016.0,
             "count of appearances": 1
         },
         {
-            "Document characteristic": "Danish Medicines Agency",
-            "count of appearances": 4
+            "Document characteristic": "Danish Health Authority",
+            "count of appearances": 25
         },
         {
-            "Document characteristic": "Ministry of the Interior and Health",
+            "Document characteristic": "Danish Health Data Authority",
+            "count of appearances": 13
+        },
+        {
+            "Document characteristic": "Danish Medicines Agency",
             "count of appearances": 4
         },
         {
@@ -58,7 +74,11 @@
             "count of appearances": 4
         },
         {
-            "Document characteristic": "Danish Health Data Authority",
+            "Document characteristic": "Ministry of the Interior and Health",
+            "count of appearances": 4
+        },
+        {
+            "Document characteristic": "The Data Ethics Council ",
             "count of appearances": 3
         },
         {
@@ -66,16 +86,8 @@
             "count of appearances": 3
         },
         {
-            "Document characteristic": "The Data Ethics Council ",
-            "count of appearances": 3
-        },
-        {
             "Document characteristic": "Agency for Digital Government",
             "count of appearances": 2
-        },
-        {
-            "Document characteristic": "Danish Health Authority",
-            "count of appearances": 1
         },
         {
             "Document characteristic": "Danish Patients",
@@ -83,19 +95,23 @@
         },
         {
             "Document characteristic": "Official documents",
-            "count of appearances": 12
+            "count of appearances": 19
         },
         {
             "Document characteristic": "Implementation documents",
-            "count of appearances": 6
-        },
-        {
-            "Document characteristic": "Working documents",
-            "count of appearances": 4
+            "count of appearances": 14
         },
         {
             "Document characteristic": "Media and communications",
-            "count of appearances": 3
+            "count of appearances": 14
+        },
+        {
+            "Document characteristic": "Working documents",
+            "count of appearances": 11
+        },
+        {
+            "Document characteristic": "Legal documents",
+            "count of appearances": 1
         }
     ]
 ]
