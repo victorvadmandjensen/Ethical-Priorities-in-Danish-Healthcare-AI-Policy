@@ -1,80 +1,92 @@
 [
     {
-        "Datetime": "2024-11-06 14:54:35.342327"
+        "Datetime": "2024-12-11 14:58:26.713205"
     },
     {
         "Variable": "pipeline",
-        "Chi-square statistic": 70.39759036144578,
-        "P-value": 3.5084818379859034e-15
+        "Chi-square statistic": 149.94699646643107,
+        "P-value": 2.705205512832797e-32
     },
     {
         "Variable": "principles",
-        "Chi-square statistic": 60.90384615384615,
-        "P-value": 1.873031361663172e-12
+        "Chi-square statistic": 121.32926829268294,
+        "P-value": 2.777923634539402e-25
     },
     [
         {
             "Document characteristic": "DA",
-            "count of appearances": 55
+            "count of appearances": 153
         },
         {
             "Document characteristic": "EN",
-            "count of appearances": 4
+            "count of appearances": 24
         },
         {
             "Document characteristic": 2023.0,
-            "count of appearances": 21
+            "count of appearances": 47
         },
         {
             "Document characteristic": 2022.0,
-            "count of appearances": 9
+            "count of appearances": 37
         },
         {
             "Document characteristic": 2021.0,
-            "count of appearances": 8
+            "count of appearances": 26
         },
         {
             "Document characteristic": 2024.0,
-            "count of appearances": 8
-        },
-        {
-            "Document characteristic": 2018.0,
-            "count of appearances": 5
+            "count of appearances": 23
         },
         {
             "Document characteristic": 2020.0,
-            "count of appearances": 3
+            "count of appearances": 16
         },
         {
-            "Document characteristic": 2017.0,
-            "count of appearances": 2
+            "Document characteristic": 2018.0,
+            "count of appearances": 13
         },
         {
             "Document characteristic": 2019.0,
-            "count of appearances": 2
+            "count of appearances": 8
+        },
+        {
+            "Document characteristic": 2017.0,
+            "count of appearances": 4
         },
         {
             "Document characteristic": 2016.0,
             "count of appearances": 1
         },
         {
-            "Document characteristic": "Danish Health Authority",
-            "count of appearances": 25
-        },
-        {
-            "Document characteristic": "Danish Health Data Authority",
-            "count of appearances": 13
+            "Document characteristic": "Ministry of the Interior and Health",
+            "count of appearances": 43
         },
         {
             "Document characteristic": "Danish Medicines Agency",
-            "count of appearances": 4
+            "count of appearances": 33
+        },
+        {
+            "Document characteristic": "Danish Health Authority",
+            "count of appearances": 26
+        },
+        {
+            "Document characteristic": "Danish Health Data Authority",
+            "count of appearances": 26
+        },
+        {
+            "Document characteristic": "Agency for Digital Government",
+            "count of appearances": 16
+        },
+        {
+            "Document characteristic": "Danish Patients",
+            "count of appearances": 12
+        },
+        {
+            "Document characteristic": "Danish Patient Safety Authority",
+            "count of appearances": 8
         },
         {
             "Document characteristic": "The Danish Council on Ethics",
-            "count of appearances": 4
-        },
-        {
-            "Document characteristic": "Ministry of the Interior and Health",
             "count of appearances": 4
         },
         {
@@ -82,32 +94,40 @@
             "count of appearances": 3
         },
         {
-            "Document characteristic": "Danish Patient Safety Authority",
-            "count of appearances": 3
+            "Document characteristic": "Ministry of the Interior and health",
+            "count of appearances": 1
         },
         {
-            "Document characteristic": "Agency for Digital Government",
-            "count of appearances": 2
+            "Document characteristic": "Danish Patient Complaints Agency",
+            "count of appearances": 1
         },
         {
-            "Document characteristic": "Danish Patients",
+            "Document characteristic": "Agency for Digital Government ",
+            "count of appearances": 1
+        },
+        {
+            "Document characteristic": "Agency for DIgital Government",
             "count of appearances": 1
         },
         {
             "Document characteristic": "Official documents",
-            "count of appearances": 19
-        },
-        {
-            "Document characteristic": "Implementation documents",
-            "count of appearances": 14
+            "count of appearances": 53
         },
         {
             "Document characteristic": "Media and communications",
-            "count of appearances": 14
+            "count of appearances": 49
+        },
+        {
+            "Document characteristic": "Implementation documents",
+            "count of appearances": 43
         },
         {
             "Document characteristic": "Working documents",
-            "count of appearances": 11
+            "count of appearances": 27
+        },
+        {
+            "Document characteristic": "Scholarly work",
+            "count of appearances": 2
         },
         {
             "Document characteristic": "Legal documents",

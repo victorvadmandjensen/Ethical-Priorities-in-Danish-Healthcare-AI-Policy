@@ -41,8 +41,10 @@ save_data(str(datetime.today()), result_list)
 
 color1 = "#005f2f"
 color2 = "#00005f"
+color3 = "#8BAD3F"
+color4 = "#FABB00"
 
-create_bar_chart(ethics_df, "pipeline", color2)
+create_bar_chart(ethics_df, "pipeline", color4)
 create_bar_chart(ethics_df, "principles", color1)
 
 create_descriptive_charts(dataframe)
