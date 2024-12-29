@@ -25,7 +25,7 @@ def descriptive_stats(df: pd.DataFrame, columns = []) -> pd.DataFrame:
     type_df = pd.DataFrame(doc_df["Document type"].items(), columns=["Document characteristic", "count of appearances"])
 
     doc_df = pd.concat([lang_df, year_df, inst_df, type_df], axis=0)
-    #print(doc_df)
+    #print(ethics_df)
 
     return ethics_df, doc_df
 
