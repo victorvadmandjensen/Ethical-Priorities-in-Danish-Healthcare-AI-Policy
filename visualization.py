@@ -78,7 +78,7 @@ def create_descriptive_charts(df: pd.DataFrame):
     # one use of matplotlib colors and another with seaborn
     colors = [plt.get_cmap("Accent").colors,
               plt.get_cmap("Set2").colors,
-              plt.get_cmap("Set3").colors,
+              plt.get_cmap("tab20").colors,
               plt.get_cmap("tab10").colors
             ]
     #colors = sns.color_palette("dark", desat=0.6, as_cmap=True)
