@@ -1,6 +1,6 @@
 [
     {
-        "Datetime": "2025-03-04 09:03:08.795647"
+        "Datetime": "2025-04-01 10:29:39.152792"
     },
     {
         "Variable": "pipeline",
@@ -9,8 +9,8 @@
     },
     {
         "Variable": "principles",
-        "Chi-square statistic": 126.48416289592758,
-        "P-value": 2.198531066072084e-26
+        "Chi-square statistic": 124.52821670428895,
+        "P-value": 5.757032928361407e-26
     },
     [
         {
