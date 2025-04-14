@@ -3,6 +3,7 @@ import pandas as pd
 from matplotlib import colormaps
 import seaborn as sns
 from matplotlib.ticker import MaxNLocator
+import numpy as np
 
 def create_bar_chart(df: pd.DataFrame, variable: str, color: str):
     if variable == "principles":
@@ -128,3 +129,21 @@ def create_descriptive_charts(df: pd.DataFrame):
     #plt.show()
     filename = "descriptive_chart.pdf"
     plt.savefig(filename)
+
+def create_heatmap(df: pd.DataFrame, category: str):
+    if category == "principles":
+        df = df[["Human autonomy", "Patient privacy", "Fairness", "Prevention of harm", "Explicability"]]
+    elif category == "pipeline":
+        df = df[["Conception", "Development", "Calibration", "Implementation, Evaluation, and Oversight"]]
+    print(df)
+
+    co_occurrence_matrix = df.T.dot(df)
+    #np.fill_diagonal(co_occurrence_matrix.values, 0)
+    print(co_occurrence_matrix)
+    plt.figure(figsize=(10, 8))
+    sns.heatmap(co_occurrence_matrix, annot=True, fmt="d", cmap="YlGnBu")
+    plt.title('Co-occurrence Matrix')
+    plt.tight_layout()
+    filename = "heatmap" + "_"+ category + ".pdf"
+    plt.savefig(filename)
+

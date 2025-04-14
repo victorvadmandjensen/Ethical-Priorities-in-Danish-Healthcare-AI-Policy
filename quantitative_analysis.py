@@ -2,7 +2,7 @@ import pandas as pd
 
 from load_data import load_data, transform_data, save_data
 from statistic_calcs import descriptive_stats, chi_square
-from visualization import create_bar_chart, create_descriptive_charts
+from visualization import create_bar_chart, create_descriptive_charts, create_heatmap
 from datetime import datetime
 
 import config
@@ -48,3 +48,6 @@ create_bar_chart(ethics_df, "pipeline", color2)
 create_bar_chart(ethics_df, "principles", color1)
 
 create_descriptive_charts(dataframe)
+
+create_heatmap(dataframe, "principles")
+create_heatmap(dataframe, "pipeline")
