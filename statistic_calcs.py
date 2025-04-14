@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import statsmodels as sm
 import scipy.stats as stats
+import samplics
 
 def descriptive_stats(df: pd.DataFrame, columns = []) -> pd.DataFrame:
     ethics_df = {}
@@ -32,10 +33,23 @@ def descriptive_stats(df: pd.DataFrame, columns = []) -> pd.DataFrame:
 def chi_square(df: pd.DataFrame, variable: str) -> {}:
     # remember the second index is NOT inclusive, unlike .loc
     if variable == "principles":
-        df = df.iloc[0:5]
+        #df = df.iloc[0:5]
+        df = df
     elif variable == "pipeline":
         df = df.iloc[5:]
-    print(df)
+    
+    df_autonomy = df["Human autonomy"]
+    print(df_autonomy)
+
+    print("Samplics analysis starts... \n")
+
+    table = samplics.Tabulation(samplics.PopParam.count)
+    table.tabulate(df_autonomy, remove_nan=False)
+    print(table)
+
+    print("Samplics analysis ends... \n")
+
+
     # get expected values as sum of appearances over number of categories
     exp = df["Count of appearances"].sum() / len(df.index)
 

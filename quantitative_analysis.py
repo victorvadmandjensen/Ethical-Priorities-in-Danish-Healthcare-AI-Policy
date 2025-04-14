@@ -31,9 +31,11 @@ doc_df = doc_df.to_dict(orient="records")
 #print(type(doc_df[0]))
 #print(doc_df)
 
+chi_square(dataframe, "principles")
+
 result_list = [
-    chi_square(ethics_df, "pipeline"),
-    chi_square(ethics_df, "principles"),
+    #chi_square(ethics_df, "pipeline"),
+    #chi_square(ethics_df, "principles"),
     doc_df
 ]
 
