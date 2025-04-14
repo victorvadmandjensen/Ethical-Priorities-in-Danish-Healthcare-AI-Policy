@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import samplics.datasets
 import statsmodels as sm
 import scipy.stats as stats
 import samplics
@@ -34,18 +35,24 @@ def chi_square(df: pd.DataFrame, variable: str) -> {}:
     # remember the second index is NOT inclusive, unlike .loc
     if variable == "principles":
         #df = df.iloc[0:5]
-        df = df
+        df = df[["Human autonomy", "Patient privacy", "Fairness", "Prevention of harm", "Explicability"]]
     elif variable == "pipeline":
-        df = df.iloc[5:]
-    
-    df_autonomy = df["Human autonomy"]
-    print(df_autonomy)
+        df = df[["Conception" "Calibration", "Development", "Implementation, Evaluation, and Oversight"]]
+   
+    #print(df["Explicability"])
+    new_list = [1 if i % 2 == 0 else 0 for i in range(0, 210)]
+    equal_dist = pd.DataFrame(np.array(new_list))
+    equal_dist.columns = ["Expected"]
+    equal_dist["Explicability"] = df["Explicability"]
+    print(equal_dist.columns)
 
     print("Samplics analysis starts... \n")
 
-    table = samplics.Tabulation(samplics.PopParam.count)
-    table.tabulate(df_autonomy, remove_nan=False)
+    table = samplics.CrossTabulation(samplics.PopParam.count)
+    #table.tabulate(samplics.datasets.load_birth()["data"].astype({"birthcat":str})["birthcat"], remove_nan=True)
+    table.tabulate(vars = equal_dist[["Expected", "Explicability"]], remove_nan=False)
     print(table)
+    #print(table.stats)
 
     print("Samplics analysis ends... \n")
 
