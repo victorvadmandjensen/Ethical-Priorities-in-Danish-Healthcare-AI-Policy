@@ -44,13 +44,16 @@ def chi_square(df: pd.DataFrame, variable: str) -> {}:
     equal_dist = pd.DataFrame(np.array(new_list))
     equal_dist.columns = ["Expected"]
     equal_dist["Explicability"] = df["Explicability"]
-    print(equal_dist.columns)
+    #print(equal_dist.columns)
+
+    new_df = df#.transpose()
+    print(new_df)
 
     print("Samplics analysis starts... \n")
 
-    table = samplics.CrossTabulation(samplics.PopParam.count)
+    table = samplics.Tabulation(samplics.PopParam.count)
     #table.tabulate(samplics.datasets.load_birth()["data"].astype({"birthcat":str})["birthcat"], remove_nan=True)
-    table.tabulate(vars = equal_dist[["Expected", "Explicability"]], remove_nan=False)
+    table.tabulate(vars = new_df, remove_nan=False)
     print(table)
     #print(table.stats)
 
