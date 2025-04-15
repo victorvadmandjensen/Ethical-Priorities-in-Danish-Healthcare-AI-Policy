@@ -4,6 +4,8 @@ import samplics.datasets
 import statsmodels as sm
 import scipy.stats as stats
 import samplics
+import rpy2.robjects.packages as rpackages
+from rpy2.robjects.vectors import StrVector
 
 def descriptive_stats(df: pd.DataFrame, columns = []) -> pd.DataFrame:
     ethics_df = {}
@@ -49,6 +51,8 @@ def chi_square(df: pd.DataFrame, variable: str) -> {}:
     new_df = df#.transpose()
     print(new_df)
 
+    '''
+
     print("Samplics analysis starts... \n")
 
     table = samplics.Tabulation(samplics.PopParam.count)
@@ -58,6 +62,15 @@ def chi_square(df: pd.DataFrame, variable: str) -> {}:
     #print(table.stats)
 
     print("Samplics analysis ends... \n")
+    '''
+
+    # import utils and set up install
+    r_utils = rpackages.importr("utils")
+    r_utils.chooseCRANmirror(ind=1)
+    r_utils.install_packages(StrVector("survey"))
+
+    r_survey = rpackages.importr("survey")
+    print(r_survey)
 
 
     # get expected values as sum of appearances over number of categories
