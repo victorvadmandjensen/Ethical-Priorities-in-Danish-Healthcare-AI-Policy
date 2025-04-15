@@ -1,11 +1,11 @@
 import numpy as np
 import pandas as pd
 import samplics.datasets
-import statsmodels as sm
+import statsmodels
 import scipy.stats as stats
 import samplics
-import rpy2.robjects.packages as rpackages
-from rpy2.robjects.vectors import StrVector
+from itertools import combinations
+
 
 def descriptive_stats(df: pd.DataFrame, columns = []) -> pd.DataFrame:
     ethics_df = {}
@@ -39,8 +39,9 @@ def chi_square(df: pd.DataFrame, variable: str) -> {}:
         #df = df.iloc[0:5]
         df = df[["Human autonomy", "Patient privacy", "Fairness", "Prevention of harm", "Explicability"]]
     elif variable == "pipeline":
-        df = df[["Conception" "Calibration", "Development", "Implementation, Evaluation, and Oversight"]]
+        df = df[["Conception", "Calibration", "Development", "Implementation, Evaluation, and Oversight"]]
    
+    ''' 
     #print(df["Explicability"])
     new_list = [1 if i % 2 == 0 else 0 for i in range(0, 210)]
     equal_dist = pd.DataFrame(np.array(new_list))
@@ -51,8 +52,7 @@ def chi_square(df: pd.DataFrame, variable: str) -> {}:
     new_df = df#.transpose()
     print(new_df)
 
-    '''
-
+    
     print("Samplics analysis starts... \n")
 
     table = samplics.Tabulation(samplics.PopParam.count)
@@ -64,14 +64,29 @@ def chi_square(df: pd.DataFrame, variable: str) -> {}:
     print("Samplics analysis ends... \n")
     '''
 
-    # import utils and set up install
-    r_utils = rpackages.importr("utils")
-    r_utils.chooseCRANmirror(ind=1)
-    r_utils.install_packages(StrVector("survey"))
+    # get overall cochran's q
+    cochran_calc = statsmodels.stats.contingency_tables.cochrans_q(df)
+    print(cochran_calc)
 
-    r_survey = rpackages.importr("survey")
-    print(r_survey)
+    # get combinations of columns
+    cc = list(combinations(df.columns,2))
+    print(cc)
 
+    for i in cc:
+        frame1 = df.loc[:, [i[0]]]
+        frame2 = df.loc[:, [i[1]]] 
+        print(frame1.columns)
+        print(" VS ")
+        print(frame2.columns)
+        frames = frame1.join(frame2)
+        cochran_calc = statsmodels.stats.contingency_tables.cochrans_q(frames)
+        print(cochran_calc)
+        p_vals = []
+        p_vals.append(cochran_calc.pvalue)
+    
+    print(p_vals)
+    bonferroni = statsmodels.stats.multitest.multipletests(p_vals, method="bonferroni")
+    print(bonferroni)
 
     # get expected values as sum of appearances over number of categories
     exp = df["Count of appearances"].sum() / len(df.index)
