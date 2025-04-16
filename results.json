@@ -1,12 +1,12 @@
 [
     {
-        "Datetime": "2025-04-16 09:22:50.229133"
+        "Datetime": "2025-04-16 18:49:26.689635"
     },
     {
         "Variable": "pipeline",
         "Cochran's Q statistic": 75.92156862745098,
         "P-value": 2.9515841406791914e-18,
-        "Pairwise tests WITHOUT Bonferroni": {
+        "Pairwise tests WITHOUT Holm-Bonferroni": {
             "Index(['Conception VS Calibration'], dtype='object')": 1.0,
             "Index(['Conception VS Development'], dtype='object')": 1.3362681631891425e-11,
             "Index(['Conception VS Implementation, Evaluation, and Oversight'], dtype='object')": 9.768054649061954e-32,
@@ -14,20 +14,20 @@
             "Index(['Calibration VS Implementation, Evaluation, and Oversight'], dtype='object')": 1.5242680588277078e-32,
             "Index(['Development VS Implementation, Evaluation, and Oversight'], dtype='object')": 2.9515841406791914e-18
         },
-        "Pairwise tests with Bonferroni": {
+        "Pairwise tests with Holm-Bonferroni": {
             "Index(['Conception VS Calibration'], dtype='object')": 1.0,
-            "Index(['Conception VS Development'], dtype='object')": 8.017608979134856e-11,
-            "Index(['Conception VS Implementation, Evaluation, and Oversight'], dtype='object')": 5.860832789437172e-31,
-            "Index(['Calibration VS Development'], dtype='object')": 1.5208133797913754e-10,
+            "Index(['Conception VS Development'], dtype='object')": 4.008804489567428e-11,
+            "Index(['Conception VS Implementation, Evaluation, and Oversight'], dtype='object')": 4.884027324530977e-31,
+            "Index(['Calibration VS Development'], dtype='object')": 5.069377932637918e-11,
             "Index(['Calibration VS Implementation, Evaluation, and Oversight'], dtype='object')": 9.145608352966247e-32,
-            "Index(['Development VS Implementation, Evaluation, and Oversight'], dtype='object')": 1.7709504844075148e-17
+            "Index(['Development VS Implementation, Evaluation, and Oversight'], dtype='object')": 1.1806336562716765e-17
         }
     },
     {
         "Variable": "principles",
         "Cochran's Q statistic": 110.0827067669173,
         "P-value": 9.398642202145803e-26,
-        "Pairwise tests WITHOUT Bonferroni": {
+        "Pairwise tests WITHOUT Holm-Bonferroni": {
             "Index(['Human autonomy VS Patient privacy'], dtype='object')": 1.4875598082197924e-05,
             "Index(['Human autonomy VS Fairness'], dtype='object')": 6.292427086373585e-07,
             "Index(['Human autonomy VS Prevention of harm'], dtype='object')": 7.830855360701774e-15,
@@ -39,17 +39,17 @@
             "Index(['Fairness VS Explicability'], dtype='object')": 0.6961175195434555,
             "Index(['Prevention of harm VS Explicability'], dtype='object')": 9.398642202145803e-26
         },
-        "Pairwise tests with Bonferroni": {
-            "Index(['Human autonomy VS Patient privacy'], dtype='object')": 0.00014875598082197923,
-            "Index(['Human autonomy VS Fairness'], dtype='object')": 6.292427086373585e-06,
-            "Index(['Human autonomy VS Prevention of harm'], dtype='object')": 7.830855360701774e-14,
-            "Index(['Human autonomy VS Explicability'], dtype='object')": 1.5250260174045508e-06,
+        "Pairwise tests with Holm-Bonferroni": {
+            "Index(['Human autonomy VS Patient privacy'], dtype='object')": 5.9502392328791694e-05,
+            "Index(['Human autonomy VS Fairness'], dtype='object')": 3.1462135431867925e-06,
+            "Index(['Human autonomy VS Prevention of harm'], dtype='object')": 5.481598752491242e-14,
+            "Index(['Human autonomy VS Explicability'], dtype='object')": 9.150156104427306e-07,
             "Index(['Patient privacy VS Fairness'], dtype='object')": 1.0,
-            "Index(['Patient privacy VS Prevention of harm'], dtype='object')": 1.2534341691434161e-24,
+            "Index(['Patient privacy VS Prevention of harm'], dtype='object')": 1.0027473353147329e-24,
             "Index(['Patient privacy VS Explicability'], dtype='object')": 1.0,
             "Index(['Fairness VS Prevention of harm'], dtype='object')": 2.0946736659208972e-25,
             "Index(['Fairness VS Explicability'], dtype='object')": 1.0,
-            "Index(['Prevention of harm VS Explicability'], dtype='object')": 9.398642202145802e-25
+            "Index(['Prevention of harm VS Explicability'], dtype='object')": 8.458777981931222e-25
         }
     },
     [
