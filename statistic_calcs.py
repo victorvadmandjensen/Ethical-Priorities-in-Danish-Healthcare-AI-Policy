@@ -1,7 +1,11 @@
 import numpy as np
 import pandas as pd
-import statsmodels as sm
+import samplics.datasets
+import statsmodels
 import scipy.stats as stats
+import samplics
+from itertools import combinations
+
 
 def descriptive_stats(df: pd.DataFrame, columns = []) -> pd.DataFrame:
     ethics_df = {}
@@ -29,21 +33,46 @@ def descriptive_stats(df: pd.DataFrame, columns = []) -> pd.DataFrame:
 
     return ethics_df, doc_df
 
-def chi_square(df: pd.DataFrame, variable: str) -> {}:
+def hypothesis_test(df: pd.DataFrame, variable: str) -> {}:
     # remember the second index is NOT inclusive, unlike .loc
     if variable == "principles":
-        df = df.iloc[0:5]
+        #df = df.iloc[0:5]
+        df = df[["Human autonomy", "Patient privacy", "Fairness", "Prevention of harm", "Explicability"]]
     elif variable == "pipeline":
-        df = df.iloc[5:]
-    print(df)
-    # get expected values as sum of appearances over number of categories
-    exp = df["Count of appearances"].sum() / len(df.index)
+        df = df[["Conception", "Calibration", "Development", "Implementation, Evaluation, and Oversight"]]
+   
+    # get overall cochran's q
+    cochran_calc = statsmodels.stats.contingency_tables.cochrans_q(df)
 
-    chi_square_calc = stats.chisquare(f_obs=df["Count of appearances"], f_exp=exp)
-    chi_square_dict = {
+    # get combinations of columns
+    cc = list(combinations(df.columns,2))
+    p_vals = {}
+    comparisons = []
+
+    # loop through combinations, compare them with Cochran's Q, and save them in p_vals dictionary
+    for i in cc:
+        frame1 = df.loc[:, [i[0]]]
+        frame2 = df.loc[:, [i[1]]] 
+        comparison_name = str(frame1.columns + " VS " + frame2.columns)
+        comparisons.append(comparison_name)
+        print(comparison_name)
+        frames = frame1.join(frame2)
+        cochran_calc = statsmodels.stats.contingency_tables.cochrans_q(frames)
+        print(cochran_calc)
+        p_vals.update({comparison_name : cochran_calc.pvalue})
+    
+    bonferroni_holm = statsmodels.stats.multitest.multipletests(list(p_vals.values()), method="holm")
+
+    bonferroni_holm_dict = {key: value for key, value in zip(comparisons, list(bonferroni_holm[1]))}
+
+    print(bonferroni_holm_dict)
+
+    calc_dict = {
                         "Variable": variable, 
-                        "Chi-square statistic" : chi_square_calc.statistic,
-                        "P-value" : chi_square_calc.pvalue
+                        "Cochran's Q statistic" : cochran_calc.statistic,
+                        "P-value" : cochran_calc.pvalue,
+                        "Pairwise tests WITHOUT Holm-Bonferroni" : p_vals,
+                        "Pairwise tests with Holm-Bonferroni" : bonferroni_holm_dict,
                        }
     # return dict of chi_square values
-    return chi_square_dict
+    return calc_dict
