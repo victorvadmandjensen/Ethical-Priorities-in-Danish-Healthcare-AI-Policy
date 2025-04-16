@@ -33,7 +33,7 @@ def descriptive_stats(df: pd.DataFrame, columns = []) -> pd.DataFrame:
 
     return ethics_df, doc_df
 
-def chi_square(df: pd.DataFrame, variable: str) -> {}:
+def hypothesis_test(df: pd.DataFrame, variable: str) -> {}:
     # remember the second index is NOT inclusive, unlike .loc
     if variable == "principles":
         #df = df.iloc[0:5]
@@ -41,61 +41,38 @@ def chi_square(df: pd.DataFrame, variable: str) -> {}:
     elif variable == "pipeline":
         df = df[["Conception", "Calibration", "Development", "Implementation, Evaluation, and Oversight"]]
    
-    ''' 
-    #print(df["Explicability"])
-    new_list = [1 if i % 2 == 0 else 0 for i in range(0, 210)]
-    equal_dist = pd.DataFrame(np.array(new_list))
-    equal_dist.columns = ["Expected"]
-    equal_dist["Explicability"] = df["Explicability"]
-    #print(equal_dist.columns)
-
-    new_df = df#.transpose()
-    print(new_df)
-
-    
-    print("Samplics analysis starts... \n")
-
-    table = samplics.Tabulation(samplics.PopParam.count)
-    #table.tabulate(samplics.datasets.load_birth()["data"].astype({"birthcat":str})["birthcat"], remove_nan=True)
-    table.tabulate(vars = new_df, remove_nan=False)
-    print(table)
-    #print(table.stats)
-
-    print("Samplics analysis ends... \n")
-    '''
-
     # get overall cochran's q
     cochran_calc = statsmodels.stats.contingency_tables.cochrans_q(df)
-    print(cochran_calc)
 
     # get combinations of columns
     cc = list(combinations(df.columns,2))
-    print(cc)
+    p_vals = {}
+    comparisons = []
 
+    # loop through combinations, compare them with Cochran's Q, and save them in p_vals dictionary
     for i in cc:
         frame1 = df.loc[:, [i[0]]]
         frame2 = df.loc[:, [i[1]]] 
-        print(frame1.columns)
-        print(" VS ")
-        print(frame2.columns)
+        comparison_name = str(frame1.columns + " VS " + frame2.columns)
+        comparisons.append(comparison_name)
+        print(comparison_name)
         frames = frame1.join(frame2)
         cochran_calc = statsmodels.stats.contingency_tables.cochrans_q(frames)
         print(cochran_calc)
-        p_vals = []
-        p_vals.append(cochran_calc.pvalue)
+        p_vals.update({comparison_name : cochran_calc.pvalue})
     
-    print(p_vals)
-    bonferroni = statsmodels.stats.multitest.multipletests(p_vals, method="bonferroni")
-    print(bonferroni)
+    bonferroni_holm = statsmodels.stats.multitest.multipletests(list(p_vals.values()), method="holm")
 
-    # get expected values as sum of appearances over number of categories
-    exp = df["Count of appearances"].sum() / len(df.index)
+    bonferroni_holm_dict = {key: value for key, value in zip(comparisons, list(bonferroni_holm[1]))}
 
-    chi_square_calc = stats.chisquare(f_obs=df["Count of appearances"], f_exp=exp)
-    chi_square_dict = {
+    print(bonferroni_holm_dict)
+
+    calc_dict = {
                         "Variable": variable, 
-                        "Chi-square statistic" : chi_square_calc.statistic,
-                        "P-value" : chi_square_calc.pvalue
+                        "Cochran's Q statistic" : cochran_calc.statistic,
+                        "P-value" : cochran_calc.pvalue,
+                        "Pairwise tests WITHOUT Holm-Bonferroni" : p_vals,
+                        "Pairwise tests with Holm-Bonferroni" : bonferroni_holm_dict,
                        }
     # return dict of chi_square values
-    return chi_square_dict
+    return calc_dict

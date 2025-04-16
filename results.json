@@ -1,6 +1,56 @@
 [
     {
-        "Datetime": "2025-04-14 12:56:53.738570"
+        "Datetime": "2025-04-16 09:22:50.229133"
+    },
+    {
+        "Variable": "pipeline",
+        "Cochran's Q statistic": 75.92156862745098,
+        "P-value": 2.9515841406791914e-18,
+        "Pairwise tests WITHOUT Bonferroni": {
+            "Index(['Conception VS Calibration'], dtype='object')": 1.0,
+            "Index(['Conception VS Development'], dtype='object')": 1.3362681631891425e-11,
+            "Index(['Conception VS Implementation, Evaluation, and Oversight'], dtype='object')": 9.768054649061954e-32,
+            "Index(['Calibration VS Development'], dtype='object')": 2.534688966318959e-11,
+            "Index(['Calibration VS Implementation, Evaluation, and Oversight'], dtype='object')": 1.5242680588277078e-32,
+            "Index(['Development VS Implementation, Evaluation, and Oversight'], dtype='object')": 2.9515841406791914e-18
+        },
+        "Pairwise tests with Bonferroni": {
+            "Index(['Conception VS Calibration'], dtype='object')": 1.0,
+            "Index(['Conception VS Development'], dtype='object')": 8.017608979134856e-11,
+            "Index(['Conception VS Implementation, Evaluation, and Oversight'], dtype='object')": 5.860832789437172e-31,
+            "Index(['Calibration VS Development'], dtype='object')": 1.5208133797913754e-10,
+            "Index(['Calibration VS Implementation, Evaluation, and Oversight'], dtype='object')": 9.145608352966247e-32,
+            "Index(['Development VS Implementation, Evaluation, and Oversight'], dtype='object')": 1.7709504844075148e-17
+        }
+    },
+    {
+        "Variable": "principles",
+        "Cochran's Q statistic": 110.0827067669173,
+        "P-value": 9.398642202145803e-26,
+        "Pairwise tests WITHOUT Bonferroni": {
+            "Index(['Human autonomy VS Patient privacy'], dtype='object')": 1.4875598082197924e-05,
+            "Index(['Human autonomy VS Fairness'], dtype='object')": 6.292427086373585e-07,
+            "Index(['Human autonomy VS Prevention of harm'], dtype='object')": 7.830855360701774e-15,
+            "Index(['Human autonomy VS Explicability'], dtype='object')": 1.525026017404551e-07,
+            "Index(['Patient privacy VS Fairness'], dtype='object')": 0.3362887904028663,
+            "Index(['Patient privacy VS Prevention of harm'], dtype='object')": 1.253434169143416e-25,
+            "Index(['Patient privacy VS Explicability'], dtype='object')": 0.5464935954065822,
+            "Index(['Fairness VS Prevention of harm'], dtype='object')": 2.094673665920897e-26,
+            "Index(['Fairness VS Explicability'], dtype='object')": 0.6961175195434555,
+            "Index(['Prevention of harm VS Explicability'], dtype='object')": 9.398642202145803e-26
+        },
+        "Pairwise tests with Bonferroni": {
+            "Index(['Human autonomy VS Patient privacy'], dtype='object')": 0.00014875598082197923,
+            "Index(['Human autonomy VS Fairness'], dtype='object')": 6.292427086373585e-06,
+            "Index(['Human autonomy VS Prevention of harm'], dtype='object')": 7.830855360701774e-14,
+            "Index(['Human autonomy VS Explicability'], dtype='object')": 1.5250260174045508e-06,
+            "Index(['Patient privacy VS Fairness'], dtype='object')": 1.0,
+            "Index(['Patient privacy VS Prevention of harm'], dtype='object')": 1.2534341691434161e-24,
+            "Index(['Patient privacy VS Explicability'], dtype='object')": 1.0,
+            "Index(['Fairness VS Prevention of harm'], dtype='object')": 2.0946736659208972e-25,
+            "Index(['Fairness VS Explicability'], dtype='object')": 1.0,
+            "Index(['Prevention of harm VS Explicability'], dtype='object')": 9.398642202145802e-25
+        }
     },
     [
         {
