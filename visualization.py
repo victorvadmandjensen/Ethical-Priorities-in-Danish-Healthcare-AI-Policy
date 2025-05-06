@@ -57,7 +57,7 @@ def create_bar_chart(df: pd.DataFrame, variable: str, color: str):
             weight="bold",
         )   
 
-    ax.set_title('Question a: Distribution of the ethics of healthcare AI across ' + variable, pad=15, weight="bold")
+    ax.set_title('Question A: Distribution of the ethics of healthcare AI across ' + variable, pad=15, weight="bold")
     ax.set_xlabel("Healthcare AI " + variable, labelpad=15)
     ax.set_ylabel("Count", labelpad=15)
     ax.set_xticklabels(wrapped_labels)

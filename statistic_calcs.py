@@ -1,10 +1,11 @@
 import numpy as np
 import pandas as pd
-import samplics.datasets
 import statsmodels
-import scipy.stats as stats
-import samplics
 from itertools import combinations
+
+import statsmodels.stats
+import statsmodels.stats.contingency_tables
+import statsmodels.stats.multitest
 
 
 def descriptive_stats(df: pd.DataFrame, columns = []) -> pd.DataFrame:
