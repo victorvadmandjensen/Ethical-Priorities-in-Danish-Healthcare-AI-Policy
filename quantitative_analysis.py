@@ -31,12 +31,11 @@ ethics_df, doc_df = descriptive_stats(dataframe, [document_chars, principles, pi
 # use records for a more human-readable output
 doc_df = doc_df.to_dict(orient="records")
 
-test = (np.array([[100, 150], [203, 322], [420, 700], [320, 210]]))
-
 result_list = [
     hypothesis_test(dataframe, "pipeline"),
     hypothesis_test(dataframe, "principles"),
-    effect_size(test),
+    effect_size(dataframe, "pipeline"),
+    effect_size(dataframe, "principles"),
     doc_df
 ]
 

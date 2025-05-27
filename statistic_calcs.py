@@ -79,8 +79,37 @@ def hypothesis_test(df: pd.DataFrame, variable: str) -> {}:
     # return dict of chi_square values
     return calc_dict
 
-def effect_size(df) -> {}:
-    method = "pearson"
-    size = association(df, method=method)
+def effect_size(df: pd.DataFrame, variable: str) -> {}:
+    # remember the second index is NOT inclusive, unlike .loc
+    if variable == "principles":
+        #df = df.iloc[0:5]
+        df = df[["Human autonomy", "Patient privacy", "Fairness", "Prevention of harm", "Explicability"]]
+    elif variable == "pipeline":
+        df = df[["Conception", "Calibration", "Development", "Implementation, Evaluation, and Oversight"]]
 
-    return {"Method": method, "Effect size": size}
+    # set method to use for effect sizes
+    method = "cramer"
+    # get combinations of columns
+    cc = list(combinations(df.columns,2))
+    sizes = []
+    comparisons = []
+
+    #frame1 = df.loc[:, [i[0]]]
+    #frame2 = df.loc[:, [i[1]]]
+    #print(frame1)
+    box = df.melt()
+    # turn frames into numpy arrays to do crosstabulation
+    crosstab = pd.crosstab(box.value, box.variable)
+    print(crosstab)
+    #comparison_name = str(frame1.columns + " VS " + frame2.columns)
+    #comparisons.append(comparison_name)
+    #frames = frame1.join(frame2)
+    #cochran_calc = statsmodels.stats.contingency_tables.cochrans_q(frames)
+    #print(cochran_calc)
+    size = association(crosstab, method=method)
+    #sizes.append({comparison_name : size})
+
+    #sizes_dict = {key: value for key, value in zip(comparisons, sizes)}
+    final_dict = {"Method": method, "Variable": variable, "Effect size": size}
+
+    return final_dict

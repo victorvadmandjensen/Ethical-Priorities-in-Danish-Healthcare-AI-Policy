@@ -1,6 +1,6 @@
 [
     {
-        "Datetime": "2025-05-27 11:43:29.007053"
+        "Datetime": "2025-05-27 12:13:29.042427"
     },
     {
         "Variable": "pipeline",
@@ -53,8 +53,14 @@
         }
     },
     {
-        "Method": "pearson",
-        "Effect size": 0.18303298140595667
+        "Method": "cramer",
+        "Variable": "pipeline",
+        "Effect size": 0.5677490965424348
+    },
+    {
+        "Method": "cramer",
+        "Variable": "principles",
+        "Effect size": 0.45293881433291444
     },
     [
         {
