@@ -6,6 +6,7 @@ from itertools import combinations
 import statsmodels.stats
 import statsmodels.stats.contingency_tables
 import statsmodels.stats.multitest
+from scipy.stats.contingency import association
 
 
 def descriptive_stats(df: pd.DataFrame, columns = []) -> pd.DataFrame:
@@ -37,7 +38,6 @@ def descriptive_stats(df: pd.DataFrame, columns = []) -> pd.DataFrame:
 def hypothesis_test(df: pd.DataFrame, variable: str) -> {}:
     # remember the second index is NOT inclusive, unlike .loc
     if variable == "principles":
-        #df = df.iloc[0:5]
         df = df[["Human autonomy", "Patient privacy", "Fairness", "Prevention of harm", "Explicability"]]
     elif variable == "pipeline":
         df = df[["Conception", "Calibration", "Development", "Implementation, Evaluation, and Oversight"]]
@@ -48,6 +48,8 @@ def hypothesis_test(df: pd.DataFrame, variable: str) -> {}:
     # get combinations of columns
     cc = list(combinations(df.columns,2))
     p_vals = {}
+    statistics = {}
+    degrees = {}
     comparisons = []
 
     # loop through combinations, compare them with Cochran's Q, and save them in p_vals dictionary
@@ -56,11 +58,12 @@ def hypothesis_test(df: pd.DataFrame, variable: str) -> {}:
         frame2 = df.loc[:, [i[1]]] 
         comparison_name = str(frame1.columns + " VS " + frame2.columns)
         comparisons.append(comparison_name)
-        print(comparison_name)
         frames = frame1.join(frame2)
         cochran_calc = statsmodels.stats.contingency_tables.cochrans_q(frames)
-        print(cochran_calc)
+        # we get p-values, test statistics, and degrees of freedom according to the returned properties in https://www.statsmodels.org/stable/_modules/statsmodels/stats/contingency_tables.html#cochrans_q
         p_vals.update({comparison_name : cochran_calc.pvalue})
+        statistics.update({comparison_name : cochran_calc.statistic})
+        degrees.update({comparison_name : cochran_calc.df})
     
     bonferroni_holm = statsmodels.stats.multitest.multipletests(list(p_vals.values()), method="holm")
 
@@ -72,8 +75,30 @@ def hypothesis_test(df: pd.DataFrame, variable: str) -> {}:
                         "Variable": variable, 
                         "Cochran's Q statistic" : cochran_calc.statistic,
                         "P-value" : cochran_calc.pvalue,
-                        "Pairwise tests WITHOUT Holm-Bonferroni" : p_vals,
-                        "Pairwise tests with Holm-Bonferroni" : bonferroni_holm_dict,
+                        "Pairwise tests WITHOUT Holm-Bonferroni (p-values, statistics, df)" : [p_vals, statistics, degrees],
+                        "Pairwise tests with Holm-Bonferroni (p-values)" : bonferroni_holm_dict,
                        }
     # return dict of chi_square values
     return calc_dict
+
+def effect_size(df: pd.DataFrame, variable: str) -> {}:
+    # remember the second index is NOT inclusive, unlike .loc
+    if variable == "principles":
+        df = df[["Human autonomy", "Patient privacy", "Fairness", "Prevention of harm", "Explicability"]]
+    elif variable == "pipeline":
+        df = df[["Conception", "Calibration", "Development", "Implementation, Evaluation, and Oversight"]]
+
+    # set method to use for effect sizes
+    method = "cramer"
+
+    # use the melt() method to create one table with variables and values - so 210 rows * the number of columns
+    box = df.melt()
+    crosstab = pd.crosstab(box.value, box.variable)
+    print(crosstab)
+    size = association(crosstab, method=method)
+    #sizes.append({comparison_name : size})
+
+    #sizes_dict = {key: value for key, value in zip(comparisons, sizes)}
+    final_dict = {"Method": method, "Variable": variable, "Effect size": size}
+
+    return final_dict
