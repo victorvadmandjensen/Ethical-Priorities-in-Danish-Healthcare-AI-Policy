@@ -6,6 +6,7 @@ from itertools import combinations
 import statsmodels.stats
 import statsmodels.stats.contingency_tables
 import statsmodels.stats.multitest
+from scipy.stats.contingency import association
 
 
 def descriptive_stats(df: pd.DataFrame, columns = []) -> pd.DataFrame:
@@ -77,3 +78,9 @@ def hypothesis_test(df: pd.DataFrame, variable: str) -> {}:
                        }
     # return dict of chi_square values
     return calc_dict
+
+def effect_size(df) -> {}:
+    method = "pearson"
+    size = association(df, method=method)
+
+    return {"Method": method, "Effect size": size}

@@ -1,9 +1,11 @@
 import pandas as pd
 
 from load_data import load_data, transform_data, save_data
-from statistic_calcs import descriptive_stats, hypothesis_test
+from statistic_calcs import descriptive_stats, hypothesis_test, effect_size
 from visualization import create_bar_chart, create_descriptive_charts
 from datetime import datetime
+
+import numpy as np
 
 import config
 
@@ -29,9 +31,12 @@ ethics_df, doc_df = descriptive_stats(dataframe, [document_chars, principles, pi
 # use records for a more human-readable output
 doc_df = doc_df.to_dict(orient="records")
 
+test = (np.array([[100, 150], [203, 322], [420, 700], [320, 210]]))
+
 result_list = [
     hypothesis_test(dataframe, "pipeline"),
     hypothesis_test(dataframe, "principles"),
+    effect_size(test),
     doc_df
 ]
 

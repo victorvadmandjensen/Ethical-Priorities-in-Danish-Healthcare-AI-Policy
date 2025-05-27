@@ -1,6 +1,6 @@
 [
     {
-        "Datetime": "2025-05-06 13:47:34.105898"
+        "Datetime": "2025-05-27 11:43:29.007053"
     },
     {
         "Variable": "pipeline",
@@ -51,6 +51,10 @@
             "Index(['Fairness VS Explicability'], dtype='object')": 1.0,
             "Index(['Prevention of harm VS Explicability'], dtype='object')": 8.458777981931222e-25
         }
+    },
+    {
+        "Method": "pearson",
+        "Effect size": 0.18303298140595667
     },
     [
         {
