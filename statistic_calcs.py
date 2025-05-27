@@ -49,6 +49,7 @@ def hypothesis_test(df: pd.DataFrame, variable: str) -> {}:
     cc = list(combinations(df.columns,2))
     p_vals = {}
     statistics = {}
+    degrees = {}
     comparisons = []
 
     # loop through combinations, compare them with Cochran's Q, and save them in p_vals dictionary
@@ -59,8 +60,10 @@ def hypothesis_test(df: pd.DataFrame, variable: str) -> {}:
         comparisons.append(comparison_name)
         frames = frame1.join(frame2)
         cochran_calc = statsmodels.stats.contingency_tables.cochrans_q(frames)
+        # we get p-values, test statistics, and degrees of freedom according to the returned properties in https://www.statsmodels.org/stable/_modules/statsmodels/stats/contingency_tables.html#cochrans_q
         p_vals.update({comparison_name : cochran_calc.pvalue})
         statistics.update({comparison_name : cochran_calc.statistic})
+        degrees.update({comparison_name : cochran_calc.df})
     
     bonferroni_holm = statsmodels.stats.multitest.multipletests(list(p_vals.values()), method="holm")
 
@@ -72,7 +75,7 @@ def hypothesis_test(df: pd.DataFrame, variable: str) -> {}:
                         "Variable": variable, 
                         "Cochran's Q statistic" : cochran_calc.statistic,
                         "P-value" : cochran_calc.pvalue,
-                        "Pairwise tests WITHOUT Holm-Bonferroni (p-values, statistics)" : [p_vals, statistics],
+                        "Pairwise tests WITHOUT Holm-Bonferroni (p-values, statistics, df)" : [p_vals, statistics, degrees],
                         "Pairwise tests with Holm-Bonferroni (p-values)" : bonferroni_holm_dict,
                        }
     # return dict of chi_square values
