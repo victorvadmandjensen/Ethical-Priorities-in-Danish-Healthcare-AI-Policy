@@ -6,7 +6,7 @@ from itertools import combinations
 import statsmodels.stats
 import statsmodels.stats.contingency_tables
 import statsmodels.stats.multitest
-from scipy.stats.contingency import association
+import stikpetP
 
 
 def descriptive_stats(df: pd.DataFrame, columns = []) -> pd.DataFrame:
@@ -59,11 +59,11 @@ def hypothesis_test(df: pd.DataFrame, variable: str) -> {}:
         comparison_name = str(frame1.columns + " VS " + frame2.columns)
         comparisons.append(comparison_name)
         frames = frame1.join(frame2)
-        cochran_calc = statsmodels.stats.contingency_tables.cochrans_q(frames)
+        cochran_calc_pair = statsmodels.stats.contingency_tables.cochrans_q(frames)
         # we get p-values, test statistics, and degrees of freedom according to the returned properties in https://www.statsmodels.org/stable/_modules/statsmodels/stats/contingency_tables.html#cochrans_q
-        p_vals.update({comparison_name : cochran_calc.pvalue})
-        statistics.update({comparison_name : cochran_calc.statistic})
-        degrees.update({comparison_name : cochran_calc.df})
+        p_vals.update({comparison_name : cochran_calc_pair.pvalue})
+        statistics.update({comparison_name : cochran_calc_pair.statistic})
+        degrees.update({comparison_name : cochran_calc_pair.df})
     
     bonferroni_holm = statsmodels.stats.multitest.multipletests(list(p_vals.values()), method="holm")
 
@@ -75,6 +75,7 @@ def hypothesis_test(df: pd.DataFrame, variable: str) -> {}:
                         "Variable": variable, 
                         "Cochran's Q statistic" : cochran_calc.statistic,
                         "P-value" : cochran_calc.pvalue,
+                        "df" : cochran_calc.df,
                         "Pairwise tests WITHOUT Holm-Bonferroni (p-values, statistics, df)" : [p_vals, statistics, degrees],
                         "Pairwise tests with Holm-Bonferroni (p-values)" : bonferroni_holm_dict,
                        }
@@ -89,13 +90,13 @@ def effect_size(df: pd.DataFrame, variable: str) -> {}:
         df = df[["Conception", "Calibration", "Development", "Implementation, Evaluation, and Oversight"]]
 
     # set method to use for effect sizes
-    method = "cramer"
+    method = "Berry-Johnston-Mielke R"
 
     # use the melt() method to create one table with variables and values - so 210 rows * the number of columns
     box = df.melt()
     crosstab = pd.crosstab(box.value, box.variable)
     print(crosstab)
-    size = association(crosstab, method=method)
+    size = stikpetP.es_jbm_r(df)
     #sizes.append({comparison_name : size})
 
     #sizes_dict = {key: value for key, value in zip(comparisons, sizes)}

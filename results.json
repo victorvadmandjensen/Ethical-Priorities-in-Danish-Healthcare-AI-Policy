@@ -1,11 +1,12 @@
 [
     {
-        "Datetime": "2025-05-27 14:27:58.782022"
+        "Datetime": "2025-05-28 13:53:39.425001"
     },
     {
         "Variable": "pipeline",
-        "Cochran's Q statistic": 75.92156862745098,
-        "P-value": 2.9515841406791914e-18,
+        "Cochran's Q statistic": 284.3030303030303,
+        "P-value": 2.481599988042784e-61,
+        "df": 3,
         "Pairwise tests WITHOUT Holm-Bonferroni (p-values, statistics, df)": [
             {
                 "Index(['Conception VS Calibration'], dtype='object')": 1.0,
@@ -43,8 +44,9 @@
     },
     {
         "Variable": "principles",
-        "Cochran's Q statistic": 110.0827067669173,
-        "P-value": 9.398642202145803e-26,
+        "Cochran's Q statistic": 254.22119815668202,
+        "P-value": 8.019610779575334e-54,
+        "df": 4,
         "Pairwise tests WITHOUT Holm-Bonferroni (p-values, statistics, df)": [
             {
                 "Index(['Human autonomy VS Patient privacy'], dtype='object')": 1.4875598082197924e-05,
@@ -97,14 +99,14 @@
         }
     },
     {
-        "Method": "cramer",
+        "Method": "Berry-Johnston-Mielke R",
         "Variable": "pipeline",
-        "Effect size": 0.5677490965424348
+        "Effect size": 0.3200262005722757
     },
     {
-        "Method": "cramer",
+        "Method": "Berry-Johnston-Mielke R",
         "Variable": "principles",
-        "Effect size": 0.45293881433291444
+        "Effect size": 0.202579533117191
     },
     [
         {
