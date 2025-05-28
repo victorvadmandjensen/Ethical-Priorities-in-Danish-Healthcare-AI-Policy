@@ -50,8 +50,8 @@ def create_bar_chart(df: pd.DataFrame, variable: str, color: str):
     for bar in bars:
         ax.text(
             bar.get_x() + bar.get_width() / 2,
-            bar.get_height() + 0.3, 
-            round(bar.get_height(), 1),
+            bar.get_height() + 0.8,
+            str(round(bar.get_height(), 1)) + " (" + str(round( (bar.get_height() / 210) * 100, 1)) + "%)",
             horizontalalignment="center",
             color=bar.get_facecolor(),
             weight="bold",
@@ -59,7 +59,7 @@ def create_bar_chart(df: pd.DataFrame, variable: str, color: str):
 
     ax.set_title('Question A: Proportion of the ethics of healthcare AI across ' + variable, pad=15, weight="bold")
     ax.set_xlabel("Healthcare AI " + variable, labelpad=15)
-    ax.set_ylabel("Count", labelpad=15)
+    ax.set_ylabel("Count of documents", labelpad=15)
     ax.set_xticklabels(wrapped_labels)
 
     plt.tight_layout()
@@ -96,7 +96,7 @@ def create_descriptive_charts(df: pd.DataFrame):
         for j in range(0, 2):
             bars = axes[i][j].bar(x=df[cols[col]].value_counts().index, height=df[cols[col]].value_counts()[0:], color=colors[col])
             axes[i][j].set_title(cols[col])
-            axes[i][j].set_ylabel("Count", labelpad=15)
+            axes[i][j].set_ylabel("Count of documents", labelpad=15)
             axes[i][j].spines['top'].set_visible(False)
             axes[i][j].spines['right'].set_visible(False)
             axes[i][j].spines['left'].set_visible(False)
@@ -115,8 +115,8 @@ def create_descriptive_charts(df: pd.DataFrame):
             for bar in bars:
                 axes[i][j].text(
                     bar.get_x() + bar.get_width() / 2,
-                    bar.get_height() + 0.3, 
-                    round(bar.get_height(), 1),
+                    bar.get_height() + 0.8, 
+                    str(round(bar.get_height(), 1)) + " (" + str(round( (bar.get_height() / 210) * 100, 1)) + "%)",
                     horizontalalignment="center",
                     color=bar.get_facecolor(),
                     weight="bold",

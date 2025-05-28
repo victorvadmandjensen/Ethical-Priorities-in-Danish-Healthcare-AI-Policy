@@ -5,8 +5,6 @@ from statistic_calcs import descriptive_stats, hypothesis_test, effect_size
 from visualization import create_bar_chart, create_descriptive_charts
 from datetime import datetime
 
-import numpy as np
-
 import config
 
 # force pandas to show all columns
@@ -47,6 +45,6 @@ color3 = "#8BAD3F"
 color4 = "#FABB00"
 
 create_bar_chart(ethics_df, "pipeline", color2)
-create_bar_chart(ethics_df, "principles", color1)
+create_bar_chart(ethics_df, "principles", color2)
 
 create_descriptive_charts(dataframe)
