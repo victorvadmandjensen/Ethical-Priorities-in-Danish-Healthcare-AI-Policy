@@ -43,7 +43,7 @@ def hypothesis_test(df: pd.DataFrame, variable: str) -> {}:
         df = df[["Conception", "Calibration", "Development", "Implementation, Evaluation, and Oversight"]]
    
     # get overall cochran's q
-    cochran_calc = statsmodels.stats.contingency_tables.cochrans_q(df)
+    cochran_calc_full = statsmodels.stats.contingency_tables.cochrans_q(df)
 
     # get combinations of columns
     cc = list(combinations(df.columns,2))
@@ -60,18 +60,18 @@ def hypothesis_test(df: pd.DataFrame, variable: str) -> {}:
         frames = frame1.join(frame2)
         cochran_calc = statsmodels.stats.contingency_tables.cochrans_q(frames)
         print(cochran_calc)
-        p_vals.update({comparison_name : cochran_calc.pvalue})
+        p_vals.update({comparison_name : [cochran_calc.statistic, cochran_calc.pvalue]})
     
-    bonferroni_holm = statsmodels.stats.multitest.multipletests(list(p_vals.values()), method="holm")
+    #bonferroni_holm = statsmodels.stats.multitest.multipletests(list(p_vals.values()), method="holm")
 
-    bonferroni_holm_dict = {key: value for key, value in zip(comparisons, list(bonferroni_holm[1]))}
+    bonferroni_holm_dict = {}#{key: value for key, value in zip(comparisons, list(bonferroni_holm[1]))}
 
     print(bonferroni_holm_dict)
 
     calc_dict = {
                         "Variable": variable, 
-                        "Cochran's Q statistic" : cochran_calc.statistic,
-                        "P-value" : cochran_calc.pvalue,
+                        "Cochran's Q statistic" : cochran_calc_full.statistic,
+                        "P-value" : cochran_calc_full.pvalue,
                         "Pairwise tests WITHOUT Holm-Bonferroni" : p_vals,
                         "Pairwise tests with Holm-Bonferroni" : bonferroni_holm_dict,
                        }
