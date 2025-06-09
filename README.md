@@ -1,7 +1,7 @@
 # Ethical Priorities in Danish Healthcare AI Policy
 
 
-This repository contains the code for the quantitative analysis and visualization for the paper _Ethics in Danish Healthcare AI Policy: A Document Analysis_ Victor Vadmand Jensen (owner of this repository), Marianne Johansson Jørgensen, Rikke Hagensby Jensen, Jeppe Lange, Jan Wolff, and Mette Terp Høybye.
+This repository contains the code for the quantitative analysis and visualization for the paper _Ethics in Danish Healthcare AI Policy: A Document Analysis_ by Victor Vadmand Jensen (owner of this repository), Marianne Johansson Jørgensen, Rikke Hagensby Jensen, Jeppe Lange, Jan Wolff, and Mette Terp Høybye.
 The paper is available as a preprint, though the statistical analysis in the repository has been updated from what is available in the preprint.
 The paper is currently under review in the International Journal of Medical Informatics.
 
