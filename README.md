@@ -13,7 +13,16 @@ To run the analysis, you must:
 * Run the *quantitative_analysis.py* script with the command *python -m quantitative_analysis.py*. This will first load and transform the data with *pandas*, calculate descriptive statistics with *pandas*, as well perform hypothesis testing with *statsmodels* and effect size calculations with *stikpetP* for each part of question A. These are saved as a JSON file. Then, the data will be visualized with *matplotlib*.
 * The calculations are saved in readable format in the JSON file *results.json* with a timestamp for time of running the analysis. The visualizations are saved as three separate PDF files.
 
-## Citation
-Cite the preprint as follows: 
+## Paper
+If you use our code, please cite our preprint as below: 
 
-*Jensen, Victor Vadmand and Jørgensen, Marianne Johansson and Jensen, Rikke Hagensby and Lange, Jeppe and Wolff, Jan and Høybye, Mette Terp, Ethics in Danish Healthcare Ai Policy: A Document Analysis. Available at SSRN: https://ssrn.com/abstract=5248408 or http://dx.doi.org/10.2139/ssrn.5248408* 
+```
+@article{Jensen2025,
+  author = {Jensen, Victor Vadmand and Jørgensen, Marianne Johansson and Jensen, Rikke Hagensby and Lange, Jeppe and Wolff, Jan and Høybye, Mette Terp},
+  title = {Ethics in Danish Healthcare Ai Policy: A Document Analysis},
+  year = {2025},
+  url = {https://ssrn.com/abstract=5248408},
+  doi = {10.2139/ssrn.5248408},
+  journal = {SSRN}
+}
+```
