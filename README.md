@@ -1,9 +1,8 @@
 # Ethical Priorities in Danish Healthcare AI Policy
 
 
-This repository contains the code for the quantitative analysis and visualization for the paper _Ethics in Danish Healthcare AI Policy: A Document Analysis_ by Victor Vadmand Jensen (owner of this repository), Marianne Johansson Jørgensen, Rikke Hagensby Jensen, Jeppe Lange, Jan Wolff, and Mette Terp Høybye.
-The paper is available as a preprint, though the statistical analysis in the repository has been updated from what is available in the preprint.
-The paper is currently under review in the International Journal of Medical Informatics.
+This repository contains the code for the quantitative analysis and visualization for the paper _Ethics in Danish healthcare AI policy: A document analysis_ by Victor Vadmand Jensen (owner of this repository), Marianne Johansson Jørgensen, Rikke Hagensby Jensen, Jeppe Lange, Jan Wolff, and Mette Terp Høybye.
+The code underlies the statistical analysis of our paper published in the International Journal of Medical Informatics.
 
 ## Running the analysis
 To run the analysis, you must:
@@ -14,15 +13,15 @@ To run the analysis, you must:
 * The calculations are saved in readable format in the JSON file *results.json* with a timestamp for time of running the analysis. The visualizations are saved as three separate PDF files.
 
 ## Paper
-If you use our code, please cite our preprint as below: 
+If you use our code, please cite our paper as below: 
 
 ```
 @article{Jensen2025,
   author = {Jensen, Victor Vadmand and Jørgensen, Marianne Johansson and Jensen, Rikke Hagensby and Lange, Jeppe and Wolff, Jan and Høybye, Mette Terp},
-  title = {Ethics in Danish Healthcare Ai Policy: A Document Analysis},
+  title = {Ethics in Danish healthcare AI policy: A document analysis},
   year = {2025},
-  url = {https://ssrn.com/abstract=5248408},
-  doi = {10.2139/ssrn.5248408},
-  journal = {SSRN}
+  url = {https://www.sciencedirect.com/science/article/pii/S1386505625002825},
+  doi = {10.1016/j.ijmedinf.2025.106065},
+  journal = {International Journal of Medical Informatics}
 }
 ```
